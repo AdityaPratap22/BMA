@@ -4,8 +4,11 @@ import { Scale, Shield, CheckCircle2, ArrowRight } from 'lucide-react';
 import { CtaBanner } from '@/components/CtaBanner';
 
 export const metadata = {
-  title: 'Legal Marketing & CA/CS Digital Growth Solutions | ApexGrowth',
+  title: 'Legal Marketing & CA/CS Digital Growth Solutions | BMA — Best Marketing Agency',
   description: 'Specialized ethical marketing, client acquisition funnels, and personal branding tailored for Law Firms, Advocates, and Corporate Financial Advisory professionals.',
+  alternates: {
+    canonical: 'https://bestmarketingagency.online/legal',
+  },
 };
 
 export default function LegalPage() {

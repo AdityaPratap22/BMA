@@ -42,7 +42,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, on
   const filteredBlogs = BLOG_DATA.filter((b) =>
     b.title.toLowerCase().includes(query.toLowerCase()) ||
     b.excerpt.toLowerCase().includes(query.toLowerCase())
-  );
+  ).slice(0, 6);
 
   const filteredLocations = FEATURED_DOMESTIC_LOCATIONS.filter((l) =>
     l.toLowerCase().includes(query.toLowerCase())

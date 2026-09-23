@@ -1,9 +1,24 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Check, ChevronDown, MessageCircle } from 'lucide-react';
+import { Check, MessageCircle } from 'lucide-react';
 import { CtaBanner } from '@/components/CtaBanner';
+import { SmmFaqAccordion } from '@/components/SmmFaqAccordion';
+
+export const metadata: Metadata = {
+  title: 'Social Media Marketing (SMM) Packages & Pricing | BMA — Best Marketing Agency',
+  description: 'Scalable social media marketing packages, viral reels production, creator management, and transparent month-to-month pricing with zero retainer lock-in.',
+  alternates: {
+    canonical: 'https://bestmarketingagency.online/smm',
+  },
+  openGraph: {
+    title: 'Social Media Marketing (SMM) Packages & Pricing | BMA — Best Marketing Agency',
+    description: 'Scalable social media marketing packages, viral reels production, creator management, and transparent month-to-month pricing with zero retainer lock-in.',
+    url: 'https://bestmarketingagency.online/smm',
+    siteName: 'BMA — Best Marketing Agency',
+    type: 'website',
+  },
+};
 
 const smmPackages = [
   {
@@ -88,8 +103,6 @@ const faqs = [
 ];
 
 export default function SmmPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
     <div className="py-16 sm:py-24 bg-brand-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
@@ -229,27 +242,7 @@ export default function SmmPage() {
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900">Pricing &amp; Process FAQs</h2>
           </div>
 
-          <div className="space-y-3">
-            {faqs.map((faq, idx) => {
-              const isOpen = openFaq === idx;
-              return (
-                <div key={idx} className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-warm-sm">
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-stone-900 hover:text-terracotta-600 transition-colors"
-                  >
-                    <span className="text-sm">{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-300 text-stone-400 ${isOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  {isOpen && (
-                    <div className="px-6 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-4">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+          <SmmFaqAccordion faqs={faqs} />
 
           {/* Request Quote CTA */}
           <div className="text-center">

@@ -1,27 +1,8 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { LOCATION_GROUPS } from '@/lib/data/locationsData';
-import {
-  MapPin,
-  ArrowRight,
-  CheckCircle2,
-  TrendingUp,
-  Search,
-  Share2,
-  Palette,
-  Code2,
-  MessageCircle,
-  HelpCircle,
-  ShieldCheck,
-  ChevronDown,
-  Sparkles,
-  Zap,
-  Crown
-} from 'lucide-react';
 import { CtaBanner } from '@/components/CtaBanner';
+import { LocationFaqAccordion } from '@/components/LocationFaqAccordion';
 
 // Helper to get formatted location name
 function formatCity(param: string): string {
@@ -55,9 +36,25 @@ function formatCity(param: string): string {
     .join(' ');
 }
 
-export default function DynamicLocationPage({ params }: { params: { city: string } }) {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
+  const cityName = formatCity(params.city);
+  return {
+    title: `Digital Marketing Agency in ${cityName} — BMA | Best Marketing Agency`,
+    description: `Leading digital marketing agency in ${cityName}. We offer SEO, Google Ads, Meta Ads, social media marketing, and custom web development with proven ROI.`,
+    alternates: {
+      canonical: `https://bestmarketingagency.online/location/${params.city}`,
+    },
+    openGraph: {
+      title: `Digital Marketing Agency in ${cityName} — BMA | Best Marketing Agency`,
+      description: `Leading digital marketing agency in ${cityName}. We offer SEO, Google Ads, Meta Ads, social media marketing, and custom web development with proven ROI.`,
+      url: `https://bestmarketingagency.online/location/${params.city}`,
+      siteName: 'BMA — Best Marketing Agency',
+      type: 'website',
+    },
+  };
+}
 
+export default function DynamicLocationPage({ params }: { params: { city: string } }) {
   const cityName = formatCity(params.city);
   const isInternational = ['USA', 'Australia', 'UK', 'Canada', 'Dubai', 'Singapore', 'Malaysia', 'Abu Dhabi', 'Qatar', 'Saudi Arabia'].includes(cityName);
   const regionTag = isInternational ? 'INTERNATIONAL · DIGITAL MARKETING' : 'INDIA · REGIONAL GROWTH HUB';
@@ -273,32 +270,7 @@ export default function DynamicLocationPage({ params }: { params: { city: string
             </h2>
           </div>
 
-          <div className="space-y-3">
-            {faqs.map((faq, idx) => {
-              const isOpen = openFaqIndex === idx;
-              return (
-                <div
-                  key={idx}
-                  className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-warm-sm"
-                >
-                  <button
-                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                    className="w-full flex items-center justify-between p-6 text-left font-serif font-bold text-stone-900 hover:text-terracotta-600 transition-colors"
-                  >
-                    <span className="text-sm sm:text-base">{faq.q}</span>
-                    <span className="text-xl text-stone-400 font-normal shrink-0 ml-4">
-                      {isOpen ? '−' : '+'}
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <div className="px-6 pb-6 text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-4">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+          <LocationFaqAccordion faqs={faqs} />
         </div>
 
         {/* ── 7. BOTTOM BLACK CTA BOX ──────────────────────────────── */}

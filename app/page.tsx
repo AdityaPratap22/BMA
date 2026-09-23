@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { Hero } from '@/components/Hero';
 import { BrandMarquee } from '@/components/BrandMarquee';
@@ -13,12 +11,15 @@ import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { BlogSection } from '@/components/BlogSection';
 import { CtaBanner } from '@/components/CtaBanner';
 
-export default function HomePage() {
-  const [isStrategyModalOpen, setIsStrategyModalOpen] = React.useState(false);
+export const metadata = {
+  title: 'BMA — Best Marketing Agency | Performance Marketing & Digital Growth',
+  description: 'BMA is an elite performance marketing and digital growth agency specializing in paid acquisition, AI search optimization (GEO), and high-converting Next.js applications.',
+};
 
+export default function HomePage() {
   return (
     <>
-      <Hero onOpenStrategy={() => setIsStrategyModalOpen(true)} />
+      <Hero />
       <BrandMarquee />
       <FoundersSpotlight />
       <WhyChooseUsSection />
@@ -28,7 +29,7 @@ export default function HomePage() {
       <ProcessSection />
       <TestimonialsSection />
       <BlogSection />
-      <CtaBanner onOpenStrategy={() => setIsStrategyModalOpen(true)} />
+      <CtaBanner />
     </>
   );
 }

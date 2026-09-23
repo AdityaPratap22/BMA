@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'BMA — Best Marketing Agency | Performance Marketing & Digital Growth',
     description: 'Scale your brand revenue with data-driven marketing, AI search optimization, and modern web applications.',
-    url: 'https://bma-agency.com',
+    url: 'https://bestmarketingagency.online',
     siteName: 'BMA - Best Marketing Agency',
     locale: 'en_US',
     type: 'website',

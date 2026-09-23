@@ -17,7 +17,7 @@ export async function GET(request: Request) {
 
   const blogs = BLOG_DATA.filter((b) =>
     b.title.toLowerCase().includes(query) || b.excerpt.toLowerCase().includes(query)
-  );
+  ).slice(0, 10);
 
   return NextResponse.json({ services, blogs });
 }

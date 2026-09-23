@@ -33,7 +33,7 @@ export const BlogSection: React.FC = () => {
 
         {/* 3 Blog Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {BLOG_DATA.map((post) => (
+          {BLOG_DATA.slice(0, 3).map((post) => (
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}

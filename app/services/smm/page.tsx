@@ -4,8 +4,11 @@ import { ArrowRight, CheckCircle2, Share2, Video, Sparkles, Flame } from 'lucide
 import { CtaBanner } from '@/components/CtaBanner';
 
 export const metadata = {
-  title: 'Social Media Marketing (SMM) & Viral Reels Strategy | ApexGrowth',
+  title: 'Social Media Marketing (SMM) & Viral Reels Strategy | BMA — Best Marketing Agency',
   description: 'Full-funnel organic and paid social media management for Instagram, LinkedIn, YouTube, and Facebook designed to build brand authority and generate leads.',
+  alternates: {
+    canonical: 'https://bestmarketingagency.online/services/smm',
+  },
 };
 
 export default function SmmPage() {
