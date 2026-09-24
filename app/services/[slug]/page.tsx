@@ -5,12 +5,44 @@ import { SERVICES_DATA } from '@/lib/data/servicesData';
 import { CtaBanner } from '@/components/CtaBanner';
 import { Check, ArrowLeft } from 'lucide-react';
 
+import { SmmServiceView } from '@/components/SmmServiceView';
+import { GraphicDesignServiceView } from '@/components/GraphicDesignServiceView';
+import { GraphicDesignDetailView } from '@/components/GraphicDesignDetailView';
+import { ServiceFaqAccordion } from '@/components/ServiceFaqAccordion';
+import { getServiceFaqs } from '@/lib/data/serviceFaqsData';
+import { 
+  getGraphicDesignItemBySlug, 
+  getGraphicDesignCategoryBySlug 
+} from '@/lib/data/graphicDesignItemsData';
+
+const SLUG_ALIASES: Record<string, string> = {
+  seo: 'seo-services',
+  'web-development': 'website-development',
+  'ugc-reels-creator-marketing': 'ugc-creator-marketing',
+  'dashboard-kpi-systems': 'dashboard-kpi',
+  'ecommerce-scaling': 'ecommerce-marketing',
+  'ai-automation-systems': 'crm-automation',
+  'b2b-lead-generation': 'lead-generation',
+  'brand-identity-design': 'logo-branding',
+};
+
 export async function generateStaticParams() {
-  return SERVICES_DATA.map((s) => ({ slug: s.slug }));
+  const serviceSlugs = SERVICES_DATA.map((s) => ({ slug: s.slug }));
+  const aliasSlugs = Object.keys(SLUG_ALIASES).map((slug) => ({ slug }));
+  return [...serviceSlugs, ...aliasSlugs];
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const service = SERVICES_DATA.find((s) => s.slug === params.slug);
+  const gdItem = getGraphicDesignItemBySlug(params.slug);
+  if (gdItem) {
+    return {
+      title: `${gdItem.name} Services — Formats, Pricing & Turnaround | BMA`,
+      description: gdItem.desc,
+    };
+  }
+
+  const targetSlug = SLUG_ALIASES[params.slug] || params.slug;
+  const service = SERVICES_DATA.find((s) => s.slug === targetSlug || s.slug === params.slug);
   if (!service) return {};
   return {
     title: `${service.title} | BMA – Best Marketing Agency`,
@@ -19,7 +51,26 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
-  const service = SERVICES_DATA.find((s) => s.slug === params.slug);
+  if (params.slug === 'social-media-marketing' || params.slug === 'smm') {
+    return <SmmServiceView />;
+  }
+
+  if (params.slug === 'graphic-design' || params.slug === 'branding-design') {
+    return <GraphicDesignServiceView />;
+  }
+
+  const gdItem = getGraphicDesignItemBySlug(params.slug);
+  if (gdItem) {
+    return <GraphicDesignDetailView item={gdItem} />;
+  }
+
+  const gdCategory = getGraphicDesignCategoryBySlug(params.slug);
+  if (gdCategory) {
+    return <GraphicDesignDetailView category={gdCategory} />;
+  }
+
+  const targetSlug = SLUG_ALIASES[params.slug] || params.slug;
+  const service = SERVICES_DATA.find((s) => s.slug === targetSlug || s.slug === params.slug);
   if (!service) notFound();
 
   return (
@@ -73,6 +124,9 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             ))}
           </div>
         </div>
+
+        {/* FAQs Section */}
+        <ServiceFaqAccordion serviceTitle={service.title} faqs={getServiceFaqs(service.slug)} />
 
         {/* CTA Block */}
         <div className="bg-terracotta-600 rounded-3xl p-10 text-center text-white space-y-4">

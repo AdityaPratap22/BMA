@@ -3,14 +3,41 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2 } from 'lucide-react';
 
-export const ContactForm: React.FC = () => {
+interface ContactFormProps {
+  initialService?: string;
+}
+
+function resolveInitialService(input?: string): string {
+  if (!input) return 'Performance Marketing (Google & Meta Ads)';
+  const lower = input.toLowerCase().replace(/[-_]/g, ' ');
+  if (lower.includes('google')) return 'Google Ads Management (Search, PMax & YouTube)';
+  if (lower.includes('meta') || lower.includes('facebook') || lower.includes('instagram')) return 'Meta Ads Management (Facebook & Instagram)';
+  if (lower.includes('smm') || lower.includes('social')) return 'Social Media Marketing (SMM)';
+  if (lower.includes('local seo')) return 'Local SEO & Google Maps Optimization';
+  if (lower.includes('seo')) return 'SEO Services (Search Engine Optimization)';
+  if (lower.includes('reels') || lower.includes('video')) return 'Reels & Short-Form Video Production';
+  if (lower.includes('ugc')) return 'UGC Reels & Creator Marketing';
+  if (lower.includes('whatsapp')) return 'WhatsApp Marketing & Automation';
+  if (lower.includes('poster')) return 'Poster Design & Festival Creatives';
+  if (lower.includes('graphic')) return 'Graphic Design (Social, Packaging & Print)';
+  if (lower.includes('logo') || lower.includes('branding')) return 'Logo & Brand Identity Design';
+  if (lower.includes('web') || lower.includes('website')) return 'Website Development (Next.js & React)';
+  if (lower.includes('dashboard') || lower.includes('kpi')) return 'Dashboard & KPI Management (Looker Studio)';
+  if (lower.includes('crm')) return 'CRM Setup & Workflow Automation';
+  if (lower.includes('lead')) return 'Lead Generation (Pay-Per-Performance)';
+  if (lower.includes('ecommerce') || lower.includes('e commerce')) return 'E-commerce Marketing & Shopping Ads';
+  if (lower.includes('content')) return 'Content Marketing & Thought Leadership';
+  return input;
+}
+
+export const ContactForm: React.FC<ContactFormProps> = ({ initialService }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
-    service: 'Performance Marketing',
+    service: resolveInitialService(initialService),
     message: '',
   });
 
@@ -94,12 +121,47 @@ export const ContactForm: React.FC = () => {
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl bg-cream-100 border border-stone-300 text-sm text-stone-900 focus:outline-none focus:border-terracotta-600"
               >
-                <option>Performance Marketing</option>
-                <option>Social Media Marketing (SMM)</option>
-                <option>SEO & Growth</option>
-                <option>Content Marketing</option>
-                <option>Branding & Design</option>
-                <option>Web Development</option>
+                <optgroup label="── Full-Funnel Growth Suites ──">
+                  <option value="Full-Suite Digital Marketing Architecture">Full-Suite Digital Marketing Architecture</option>
+                  <option value="Social Media Marketing (SMM)">Social Media Marketing (₹5,999–₹11,999/mo)</option>
+                  <option value="Performance Marketing (Google & Meta Ads)">Performance Marketing (Google &amp; Meta Ads)</option>
+                </optgroup>
+
+                <optgroup label="── Paid Advertising & Growth ──">
+                  <option value="Google Ads Management (Search, PMax & YouTube)">Google Ads Management (18% of Ad Spend)</option>
+                  <option value="Meta Ads Management (Facebook & Instagram)">Meta Ads Management (15% of Ad Spend)</option>
+                  <option value="B2B Lead Generation (Pay-Per-Performance)">B2B Lead Generation (Custom / Pay-per-lead)</option>
+                  <option value="E-commerce Scaling & Shopping Ads">E-commerce Scaling (₹8,000–₹20,000/mo)</option>
+                  <option value="Conversion Rate Optimization (CRO)">Conversion Rate Optimization (₹5,000–₹15,000/audit)</option>
+                </optgroup>
+
+                <optgroup label="── Organic Search & SEO ──">
+                  <option value="SEO Services (Search Engine Optimization)">SEO Services (₹4,000–₹12,000/mo)</option>
+                  <option value="Local SEO & Google Maps Optimization">Local Business SEO (₹3,500–₹9,000/mo)</option>
+                </optgroup>
+
+                <optgroup label="── Social Media, Creators & Direct ──">
+                  <option value="UGC Reels & Creator Marketing">UGC Reels &amp; Creator Marketing (₹2,100–₹5,100/campaign)</option>
+                  <option value="Influencer Marketing Campaigns">Influencer Marketing (₹15,000–₹50,000/campaign)</option>
+                  <option value="WhatsApp Marketing & Automation">WhatsApp Marketing (₹2,500–₹6,000/mo)</option>
+                  <option value="Email Marketing Funnels & Automation">Email Marketing Funnels (₹4,500–₹12,000/mo)</option>
+                </optgroup>
+
+                <optgroup label="── Creative Design & Branding ──">
+                  <option value="Graphic Design (Social, Packaging & Print)">Graphic Design (₹200 onwards)</option>
+                  <option value="Brand Identity & Logo Design">Brand Identity Design (₹850–₹3,500)</option>
+                </optgroup>
+
+                <optgroup label="── Tech, Web & AI Systems ──">
+                  <option value="Website Development (Next.js & React)">Website Development (₹6,500–₹18,000)</option>
+                  <option value="Dashboard & KPI Management (Looker Studio)">Dashboard &amp; KPI Systems (₹2,000–₹15,000)</option>
+                  <option value="AI Automation Systems & Custom Agents">AI Automation Systems (₹5,000–₹25,000)</option>
+                </optgroup>
+
+                <optgroup label="── Custom & Other ──">
+                  <option value="Custom Multi-Channel Growth Package">Custom Multi-Channel Growth Package</option>
+                  <option value="Other / General Inquiry">Other / General Inquiry</option>
+                </optgroup>
               </select>
             </div>
           </div>

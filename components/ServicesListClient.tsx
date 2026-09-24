@@ -14,23 +14,43 @@ const serviceFilters = [
   'Tech & Web Dev',
 ];
 
+const PRIMARY_SERVICE_SLUGS = [
+  'social-media-marketing',
+  'graphic-design',
+  'ugc-reels-creator-marketing',
+  'dashboard-kpi-systems',
+  'seo',
+  'google-ads',
+  'meta-ads',
+  'web-development',
+  'whatsapp-marketing',
+  'email-marketing',
+  'influencer-marketing',
+  'b2b-lead-generation',
+  'ecommerce-scaling',
+  'cro',
+  'local-seo',
+  'ai-automation-systems',
+  'brand-identity-design',
+];
+
 // Helper to categorize services for quick filter
 function matchesFilter(serviceId: string, filter: string): boolean {
   if (filter === 'All Solutions') return true;
   if (filter === 'Paid Advertising') {
-    return ['google-ads', 'meta-ads', 'lead-generation', 'ecommerce-marketing'].includes(serviceId);
+    return ['google-ads', 'meta-ads', 'b2b-lead-generation', 'ecommerce-scaling'].includes(serviceId);
   }
   if (filter === 'Organic Search & SEO') {
-    return ['seo-services', 'local-seo', 'content-marketing'].includes(serviceId);
+    return ['seo', 'local-seo'].includes(serviceId);
   }
   if (filter === 'Content & Video') {
-    return ['social-media-marketing', 'reels-video-production', 'ugc-creator-marketing', 'whatsapp-marketing'].includes(serviceId);
+    return ['social-media-marketing', 'ugc-reels-creator-marketing', 'influencer-marketing', 'whatsapp-marketing', 'email-marketing'].includes(serviceId);
   }
   if (filter === 'Design & Branding') {
-    return ['graphic-design', 'poster-design', 'logo-branding'].includes(serviceId);
+    return ['graphic-design', 'brand-identity-design'].includes(serviceId);
   }
   if (filter === 'Tech & Web Dev') {
-    return ['website-development', 'dashboard-kpi', 'crm-automation'].includes(serviceId);
+    return ['web-development', 'dashboard-kpi-systems', 'cro', 'ai-automation-systems'].includes(serviceId);
   }
   return true;
 }
@@ -39,7 +59,9 @@ export function ServicesListClient() {
   const [activeFilter, setActiveFilter] = useState('All Solutions');
 
   const filteredServices = useMemo(() => {
-    return SERVICES_DATA.filter((s) => matchesFilter(s.id, activeFilter));
+    return SERVICES_DATA
+      .filter((s) => PRIMARY_SERVICE_SLUGS.includes(s.slug))
+      .filter((s) => matchesFilter(s.slug, activeFilter));
   }, [activeFilter]);
 
   return (

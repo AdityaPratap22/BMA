@@ -95,8 +95,8 @@ export const Footer: React.FC = () => {
               <li><Link href="/services/smm" className="hover:text-[#8B4513] transition-colors">Social Media Marketing &amp; UGC Video</Link></li>
               <li><Link href="/services/seo-growth" className="hover:text-[#8B4513] transition-colors">Search Engine &amp; AI Optimization (SEO / GEO)</Link></li>
               <li><Link href="/services/content-marketing" className="hover:text-[#8B4513] transition-colors">Content Marketing &amp; Thought Leadership</Link></li>
-              <li><Link href="/services/branding-design" className="hover:text-[#8B4513] transition-colors">Graphic Design &amp; Brand Systems (From ₹150)</Link></li>
-              <li><Link href="/services/website-development" className="hover:text-[#8B4513] transition-colors">Sub-Second Next.js Web Development</Link></li>
+              <li><Link href="/services/graphic-design" className="hover:text-[#8B4513] transition-colors">Graphic Design &amp; Brand Systems (From ₹200)</Link></li>
+              <li><Link href="/services/web-development" className="hover:text-[#8B4513] transition-colors">Sub-Second Next.js Web Development</Link></li>
             </ul>
           </div>
 
@@ -164,7 +164,16 @@ export const Footer: React.FC = () => {
         {/* Bottom Copyright Bar */}
         <div className="pt-6 border-t border-stone-200/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 gap-4">
           <div>
-            © {new Date().getFullYear()} BMA – Best Marketing Agency. All rights reserved.
+            © {new Date().getFullYear()}{' '}
+            <a
+              href="https://businessvolunteers.online/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-stone-700 hover:text-terracotta-600 hover:underline transition-colors"
+            >
+              Business Volunteers
+            </a>
+            . All rights reserved.
           </div>
           <div className="flex items-center gap-6">
             <Link href="/contact" className="hover:text-stone-800 transition-colors">Privacy Policy</Link>

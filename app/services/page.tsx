@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ServicesListClient } from '@/components/ServicesListClient';
 import { CtaBanner } from '@/components/CtaBanner';
+import { ServiceFaqAccordion } from '@/components/ServiceFaqAccordion';
 import { Sparkles } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -80,6 +81,29 @@ export default function ServicesPage() {
             </Link>
           </div>
         </div>
+
+        {/* ── SERVICES FAQS ────────────────────────────────────────── */}
+        <ServiceFaqAccordion
+          serviceTitle="Digital Marketing & Growth"
+          faqs={[
+            {
+              q: "How does your pricing and billing model work?",
+              a: "We believe in 100% pricing transparency. We offer fixed-price projects (like Website Development & Dashboards), pay-per-creative pricing for Graphic Design (from ₹200), and monthly growth packages with zero lock-in contracts."
+            },
+            {
+              q: "Can I combine multiple services into a single monthly package?",
+              a: "Yes! Many clients combine Social Media Marketing, Meta/Google Ads, and Graphic Design into an integrated growth retainer. We provide bundled discounts for multi-service retainers."
+            },
+            {
+              q: "How fast can we launch our campaigns?",
+              a: "Fast onboarding is our priority. Most performance ad campaigns, social media calendars, and creative projects kick off within 48 to 72 hours of your initial WhatsApp consultation."
+            },
+            {
+              q: "Do I have direct access to the team working on my account?",
+              a: "Yes, you get a dedicated WhatsApp group with your account strategist, designer, and media buyer for daily communication and instant updates."
+            }
+          ]}
+        />
 
         <CtaBanner />
       </div>

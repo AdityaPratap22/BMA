@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Search, Menu, X, ChevronDown, User, Sparkles, ShieldCheck, Trophy } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Sparkles, ShieldCheck } from 'lucide-react';
 
 interface HeaderProps {
   onOpenSearch?: () => void;
@@ -152,35 +152,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch, onOpenStrategy }) 
           })}
         </nav>
 
-        {/* Action Buttons */}
-        <div className="hidden sm:flex items-center gap-3">
-          <button
-            onClick={onOpenSearch}
-            className="p-2.5 rounded-full text-stone-600 hover:text-[#8B4513] hover:bg-[#F5EFE6] transition-colors"
-            title="Global Search (Ctrl+K)"
-            aria-label="Search"
-          >
-            <Search className="w-5 h-5" />
-          </button>
-
-          <button
-            onClick={onOpenStrategy}
-            className="bg-[#8B4513] text-white px-6 py-2.5 rounded-xl font-medium text-sm hover:bg-[#72360C] transition-all shadow-warm-sm"
-          >
-            Let's Talk
-          </button>
-        </div>
-
         {/* Mobile Hamburger Toggle */}
-        <div className="flex items-center gap-2 sm:hidden">
-          <button
-            onClick={onOpenSearch}
-            className="p-2 rounded-lg text-stone-700 hover:bg-[#F5EFE6]"
-            aria-label="Search"
-          >
-            <Search className="w-5 h-5" />
-          </button>
-
+        <div className="flex items-center sm:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 rounded-lg text-stone-800 hover:bg-[#F5EFE6]"
@@ -234,18 +207,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSearch, onOpenStrategy }) 
               )}
             </div>
           ))}
-
-          <div className="pt-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onOpenStrategy) onOpenStrategy();
-              }}
-              className="w-full flex items-center justify-center gap-2 bg-[#8B4513] text-white px-4 py-3 rounded-xl font-medium text-base hover:bg-[#72360C]"
-            >
-              <span>Let's Talk</span>
-            </button>
-          </div>
         </div>
       )}
     </header>

@@ -41,7 +41,11 @@ const contactDetails = [
   },
 ];
 
-export default function ContactPage() {
+export default function ContactPage({
+  searchParams,
+}: {
+  searchParams?: { service?: string };
+}) {
   return (
     <div className="py-16 sm:py-24 bg-brand-bg space-y-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -117,7 +121,7 @@ export default function ContactPage() {
 
           {/* Right: Lead Form */}
           <div className="lg:col-span-7">
-            <ContactForm />
+            <ContactForm initialService={searchParams?.service} />
           </div>
 
         </div>
