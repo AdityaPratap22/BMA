@@ -45,10 +45,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenStrategy }) => {
                 href="https://wa.me/918586989832?text=Hi%2C%20I%20would%20like%20to%20start%20a%20project%20with%20BMA"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white px-7 py-3.5 rounded-xl font-bold text-base transition-all shadow-warm-md hover:shadow-warm-lg group"
+                className="inline-flex items-center gap-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white px-7 py-3.5 rounded-xl font-bold text-base transition-all duration-300 shadow-warm-md hover:shadow-warm-lg hover:-translate-y-1 active:translate-y-0 group"
               >
                 <svg
-                  className="w-5 h-5 fill-white transition-transform group-hover:scale-110"
+                  className="w-5 h-5 fill-white transition-transform duration-300 group-hover:scale-115 group-hover:-rotate-12"
                   viewBox="0 0 16 16"
                   xmlns="http://www.w3.org/2000/svg"
                 >

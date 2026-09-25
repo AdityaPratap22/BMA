@@ -24,8 +24,8 @@ const contactDetails = [
   {
     icon: <Mail className="w-5 h-5" />,
     label: 'Email Us',
-    value: 'contact.digitaldigix@gmail.com',
-    href: 'mailto:contact.digitaldigix@gmail.com',
+    value: 'contact.businessvolunteers@gmail.com',
+    href: 'mailto:contact.businessvolunteers@gmail.com',
   },
   {
     icon: <MapPin className="w-5 h-5" />,

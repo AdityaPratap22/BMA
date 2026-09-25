@@ -125,6 +125,52 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           </div>
         </div>
 
+        {/* What We Do Full Capabilities Section */}
+        {service.whatWeDo && service.whatWeDo.length > 0 && (
+          <div className="bg-white rounded-3xl p-8 sm:p-10 border border-stone-200 shadow-warm-sm space-y-6">
+            <div className="space-y-1">
+              <span className="text-xs font-bold uppercase tracking-widest text-terracotta-600">
+                End-to-End Execution
+              </span>
+              <h2 className="text-2xl font-serif font-bold text-stone-900">
+                What We Do in {service.title}
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {service.whatWeDo.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-stone-50 border border-stone-100 hover:border-terracotta-200 transition-colors">
+                  <span className="w-6 h-6 rounded-full bg-terracotta-100 text-terracotta-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                    {idx + 1}
+                  </span>
+                  <span className="text-sm text-stone-700 font-medium leading-relaxed">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Common Challenges We Solve */}
+        {service.painPoints && service.painPoints.length > 0 && (
+          <div className="bg-[#FAF7F2] rounded-3xl p-8 sm:p-10 border border-[#EFE8DD] space-y-6">
+            <div className="space-y-1">
+              <span className="text-xs font-bold uppercase tracking-widest text-stone-500">
+                Growth Roadblocks
+              </span>
+              <h2 className="text-2xl font-serif font-bold text-stone-900">
+                Challenges We Solve for Your Brand
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {service.painPoints.map((point, idx) => (
+                <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-stone-200/80 shadow-sm">
+                  <span className="text-amber-600 font-bold shrink-0 mt-0.5 text-base">⚠️</span>
+                  <span className="text-sm text-stone-700 leading-relaxed font-medium">{point}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* FAQs Section */}
         <ServiceFaqAccordion serviceTitle={service.title} faqs={getServiceFaqs(service.slug)} />
 

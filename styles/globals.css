@@ -55,3 +55,87 @@ html {
 .modal-scroll::-webkit-scrollbar-thumb:hover {
   background: #C86B3C;
 }
+
+/* ── FLOATING BUTTON ANIMATIONS ──────────────────────────────── */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes ripple-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.75;
+  }
+  60% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes icon-wiggle {
+  0%, 82%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  84% {
+    transform: rotate(-12deg) scale(1.08);
+  }
+  88% {
+    transform: rotate(12deg) scale(1.08);
+  }
+  92% {
+    transform: rotate(-8deg) scale(1.04);
+  }
+  96% {
+    transform: rotate(8deg) scale(1.04);
+  }
+  98% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-180%) rotate(25deg);
+  }
+  25%, 100% {
+    transform: translateX(250%) rotate(25deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-gentle 3.6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-gentle 3.6s ease-in-out 1.8s infinite;
+}
+
+.animate-ripple-pulse {
+  animation: ripple-ring 2.4s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+.animate-ripple-pulse-delayed {
+  animation: ripple-ring 2.4s cubic-bezier(0.2, 0.8, 0.4, 1) 1.2s infinite;
+}
+
+.animate-icon-wiggle {
+  animation: icon-wiggle 5.5s ease-in-out infinite;
+}
+
+.animate-icon-wiggle-delayed {
+  animation: icon-wiggle 5.5s ease-in-out 2.75s infinite;
+}
+
+.animate-shine-sweep {
+  animation: shine-sweep 4s ease-in-out infinite;
+}
+
